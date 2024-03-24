@@ -1,0 +1,26 @@
+plugins{
+    id 'java'
+    id 'war'
+}
+group = 'org.example.myproj'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+war {
+    webAppDirectory = file('src/main/webapp')
+    from 'src/main/java' // adds a file-set to the root of the archive
+}
